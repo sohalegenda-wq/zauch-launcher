@@ -1,0 +1,8 @@
+{
+  "credential_vault": "not-windows",
+  "pages": 10,
+  "resources": true,
+  "settings_saved": true,
+  "frozen": false,
+  "installer_subprocess": true
+}

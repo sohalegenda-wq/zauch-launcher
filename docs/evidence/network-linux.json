@@ -1,0 +1,10 @@
+{
+  "mojang_manifest": {
+    "ok": false,
+    "error": "ProxyError: HTTPSConnectionPool(host='piston-meta.mojang.com', port=443): Max retries exceeded with url: /mc/game/version_manifest_v2.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+  },
+  "fabric_catalog": {
+    "ok": false,
+    "error": "ProxyError: HTTPSConnectionPool(host='meta.fabricmc.net', port=443): Max retries exceeded with url: /v2/versions/loader (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+  }
+}

@@ -1,0 +1,39 @@
+* { font-family: "Segoe UI", "DejaVu Sans"; font-size: 13px; }
+QMainWindow, QDialog { background: @BG; color: @TEXT; }
+QWidget { color: @TEXT; }
+QWidget#shell, QStackedWidget, QScrollArea, QScrollArea > QWidget > QWidget { background: @BG; }
+QWidget#sidebar { background: @PANEL; border-right: 1px solid @BORDER; }
+QFrame#card, QGroupBox { background: @PANEL; border: 1px solid @BORDER; border-radius: 14px; }
+QGroupBox { margin-top: 16px; padding: 18px; }
+QGroupBox::title { subcontrol-origin: margin; left: 16px; padding: 0 5px; }
+QLabel { background: transparent; }
+QLabel#muted { color: @MUTED; }
+QLabel#heading { font-size: 26px; font-weight: 700; }
+QLabel#brand { font-size: 23px; font-weight: 800; letter-spacing: 2px; }
+QLabel#eyebrow { color: @ACCENT; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+QPushButton { background: @PANEL; border: 1px solid @BORDER; border-radius: 9px; padding: 10px 15px; font-weight: 600; }
+QPushButton:hover { background: @HOVER; border-color: @ACCENT; }
+QPushButton:pressed { background: @BORDER; }
+QPushButton:disabled { color: @MUTED; background: @BG; border-color: @BORDER; }
+QPushButton#primary { background: @ACCENT; border: none; color: #0b211a; font-weight: 800; padding: 14px 28px; }
+QPushButton#primary:hover { background: #9ceacb; }
+QPushButton#nav { text-align: left; border: none; background: transparent; padding: 12px 10px; font-size: 12px; color: @MUTED; }
+QPushButton#nav:checked { background: @HOVER; color: @ACCENT; border-left: 3px solid @ACCENT; }
+QPushButton#nav:hover { color: @TEXT; background: @HOVER; }
+QPushButton#window { background: transparent; border: none; padding: 5px; border-radius: 4px; }
+QPushButton#window:hover { background: @HOVER; }
+QLineEdit, QSpinBox, QComboBox, QListWidget, QTableWidget, QPlainTextEdit { background: @PANEL; border: 1px solid @BORDER; border-radius: 8px; padding: 8px; selection-background-color: @HOVER; }
+QLineEdit:focus, QSpinBox:focus, QComboBox:focus { border-color: @ACCENT; }
+QComboBox QAbstractItemView { background: @PANEL; selection-background-color: @HOVER; }
+QTableWidget { gridline-color: @BORDER; alternate-background-color: @BG; }
+QHeaderView::section { background: @PANEL; color: @MUTED; padding: 10px; border: none; border-bottom: 1px solid @BORDER; }
+QTableWidget::item { padding: 8px; }
+QListWidget::item { padding: 10px; border-radius: 6px; }
+QListWidget::item:selected { background: @HOVER; color: @ACCENT; }
+QCheckBox { spacing: 8px; padding: 4px; }
+QProgressBar { background: @PANEL; border: 1px solid @BORDER; border-radius: 7px; text-align: center; min-height: 15px; }
+QProgressBar::chunk { background: @ACCENT; border-radius: 6px; }
+QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }
+QScrollBar::handle:vertical { background: @BORDER; min-height: 35px; border-radius: 4px; }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+QToolTip { background: @PANEL; color: @TEXT; border: 1px solid @BORDER; padding: 8px; }
