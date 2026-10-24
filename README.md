@@ -1,12 +1,12 @@
 # Zauch Launcher
 
-**[Скачать полный проект ZIP](https://raw.githubusercontent.com/sohalegenda-wq/zauch-launcher/main/downloads/ZauchLauncher-source.zip)** · **[Сборка Windows EXE / Actions](https://github.com/sohalegenda-wq/zauch-launcher/actions/workflows/build-windows.yml)**
+**[Скачать Windows EXE (ZIP)](https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317/artifacts/12551385809)** · **[Скачать полный проект ZIP](https://raw.githubusercontent.com/sohalegenda-wq/zauch-launcher/main/downloads/ZauchLauncher-source.zip)** · **[Сборка Windows EXE / Actions](https://github.com/sohalegenda-wq/zauch-launcher/actions/workflows/build-windows.yml)**
 
 После успешной сборки откройте последний зелёный запуск Actions и скачайте `Zauch-Launcher-Windows-x64` в разделе Artifacts. Microsoft OAuth требует собственного Client ID; настройки описаны ниже.
 
 Нативный лаунчер Minecraft Java Edition для Windows 10/11 x64: Python 3.12, PySide6, minecraft-launcher-lib 8.0. Исходный код содержит настоящую установку Vanilla и Fabric, Microsoft OAuth PKCE и запуск Java-процесса. Игровые файлы в проект не включены.
 
-**Статус:** исходный проект и автоматическая сборка Windows. Проверки в Linux перечислены в [VALIDATION.md](docs/VALIDATION.md). Windows `.exe`, вход в реальный Microsoft Account и фактический запуск Minecraft в этой среде не проверены. Не считайте прохождение unit-тестов подтверждением запуска Minecraft.
+**Статус:** Windows EXE успешно собран и проверен на GitHub Windows Runner: 42 теста, UI/resources, frozen multiprocessing, Windows Credential Manager и независимый game monitor. [Скачать ZIP с EXE](https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317/artifacts/12551385809). Реальный Microsoft вход, скачивание клиента и фактический запуск Minecraft с аккаунтом ещё не проверены; требуется собственный Client ID и лицензия. Подробнее — [VALIDATION.md](docs/VALIDATION.md).
 
 ## Быстрый запуск из исходников
 
@@ -42,7 +42,7 @@ dist/Zauch Launcher.exe
 
 Это один файл с оконной подсистемой, без Python Console. Сборка требует интернет для PyPI и примерно 1–2 ГБ свободного места. Не запускайте `build.bat` с правами администратора. Подписывание Authenticode не настроено: для публичного распространения владелец проекта должен подписать сборку собственным сертификатом.
 
-GitHub Actions: поместите содержимое этой папки в корень своего репозитория вместе со скрытой `.github`. Workflow **Build Windows launcher** запускается при push/PR и вручную. После успешной сборки скачайте артефакт **Zauch-Launcher-Windows-x64** на странице запуска workflow. Создание репозитория и выполнение workflow в этой сессии не проводились.
+GitHub Actions: поместите содержимое этой папки в корень своего репозитория вместе со скрытой `.github`. Workflow **Build Windows launcher** запускается при push/PR и вручную. После успешной сборки скачайте артефакт **Zauch-Launcher-Windows-x64** на странице запуска workflow. Первый [Windows workflow](https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317) уже выполнен успешно; исходники и EXE опубликованы как артефакты.
 
 PyInstaller не делает Windows-сборки из Linux. Linux-файл, если он создан для проверки упаковки, не заменяет Windows `.exe`.
 

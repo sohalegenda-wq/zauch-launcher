@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-24",
+  "platform": "Windows x64",
+  "python": "3.12",
+  "run_url": "https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317",
+  "run_id": 40070540317,
+  "job_id": 120802807778,
+  "commit": "0823b926ec94387ac0d782eaa680a8164957cd82",
+  "conclusion": "success",
+  "tests_passed": 42,
+  "tests_seconds": 3.57,
+  "credential_vault": "passed",
+  "pages": 10,
+  "resources": true,
+  "settings_saved": true,
+  "frozen": true,
+  "installer_subprocess": true,
+  "independent_monitor": true,
+  "artifact_id": 12551385809,
+  "artifact_bytes": 54007199,
+  "artifact_sha256": "be2b741d424731d7a516c8e6d0bc1447d7c6cc426d967f06e29079d6c8f09b2a",
+  "minecraft_end_to_end_tested": false
+}

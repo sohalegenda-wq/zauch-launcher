@@ -1,0 +1,10 @@
+2026-10-24T06:32:10.7247105Z 42 passed in 3.57s
+2026-10-24T06:33:22.7448519Z 71805 INFO: Build complete! The results are available in: D:\a\zauch-launcher\zauch-launcher\dist
+2026-10-24T06:33:29.4068527Z   "credential_vault": "passed",
+2026-10-24T06:33:29.4068824Z   "pages": 10,
+2026-10-24T06:33:29.4069031Z   "resources": true,
+2026-10-24T06:33:29.4069532Z   "settings_saved": true,
+2026-10-24T06:33:29.4069757Z   "frozen": true,
+2026-10-24T06:33:29.4070373Z   "installer_subprocess": true,
+2026-10-24T06:33:29.4070635Z   "independent_monitor": true
+2026-10-24T06:33:29.4175215Z Build complete: dist\Zauch Launcher.exe

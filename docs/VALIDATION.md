@@ -1,29 +1,37 @@
 # Фактическая проверка — 24 октября 2026
 
-Среда разработки: Linux x86_64, CPython 3.12.14. Windows Runner и Microsoft/Minecraft Account в этой сессии не предоставлены.
+## Windows: сборка выполнена успешно
 
-## Подтверждено
+[GitHub Actions: Build Windows launcher, запуск № 1](https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317)
 
-- Все Python-файлы компилируются через compileall, импорты приложения выполняются.
-- **42 теста прошли**: настройки и ограничения RAM/аргументов, SQLite-профили и история, восстановление наблюдения с проверкой идентичности процесса, сохранность миров при удалении профиля, ZIP backup, ограничения путей, atomic download, повторы HTTP/hash ошибок, отмена посередине потока, LZMA runtime, SHA-1 inventory и обнаружение повреждения, ремонт Fabric-библиотек без опубликованного хеша, Java major/x64, настоящая генерация команды через minecraft-launcher-lib для Vanilla и Fabric.
-- Реальный локальный HTTP callback протестирован: неправильный state → HTTP 400, правильный → HTTP 200, PKCE S256 verifier/challenge соответствуют друг другу. Обмен с Microsoft в этих тестах заменён явными unit fixtures.
-- UI открыт в Qt offscreen, пройдены **10 страниц** (9 пунктов меню и центр загрузок), сохранены настройки, выбраны профили и проверена фильтрация полученного списка версий. Скриншот: `docs/ui-preview.png`.
-- Исходный `--self-test` проверил ресурсы и создание дочернего установщика через multiprocessing spawn. Проверка дочернего установщика намеренно отклоняет недопустимый ID до сети, а не изображает загрузку игры.
-- Сопровождение процессов проверено на безопасном Python-процессе: stdout скрывает тестовый токен, код завершения записывается в SQLite. Это не запуск Minecraft.
-- PyInstaller создал реальный **Linux ELF one-file** (около 80 МБ). Упакованный `tools/frozen_smoke.py` подтвердил UI/resources, frozen multiprocessing и независимый monitor с записью exit code и скрытием тестового токена; отчёт — `docs/evidence/frozen-linux.json`. Windows Credential Manager в Linux не проверяется. Никакой ELF не переименовывается в `.exe` и не распространяется как Windows-сборка.
-- Для основных зафиксированных зависимостей выполнено разрешение Windows x64 wheels CPython 3.12. Проверка с `--platform` не заменяет Windows-run: часть markers оценивается по хосту. Windows backend дополнительно указан как `pywin32-ctypes` с marker `sys_platform == 'win32'`.
-- Лицензия и SVG Lucide загружены с официального GitHub; логотип и два фона оригинальны. ICO создан и проверен через Qt/Pillow.
+Коммит исполняемого кода: `0823b926ec94387ac0d782eaa680a8164957cd82`.
 
-## Live-сеть: блокировка среды
+- Windows runner, Python 3.12 x64: **42 теста прошли за 3,57 с**.
+- PyInstaller создал настоящий `dist/Zauch Launcher.exe` с оконной подсистемой.
+- Упакованный EXE прошёл smoke-test: **10 страниц** Qt, ресурсы, сохранение настроек.
+- `multiprocessing spawn` проверен в собранном EXE; тест намеренно отклоняет недопустимый ID версии до сетевого запроса.
+- **Windows Credential Manager: passed** — временная тестовая запись создана, прочитана и удалена через WinVaultKeyring.
+- Независимый упакованный game monitor проверен безопасным Python-процессом: тестовый токен скрыт, код завершения сохранён в SQLite.
+- Артефакт **Zauch-Launcher-Windows-x64**: ZIP около 54 МБ, содержит `Zauch Launcher.exe`.
 
-Настоящие запросы к `piston-meta.mojang.com` и `meta.fabricmc.net` завершились отказом облачного HTTPS proxy: **CONNECT 403 Forbidden**. Полные безопасные результаты — `docs/evidence/network-linux.json`. Обход сетевой политики не выполнялся. В UI при такой ошибке не показывается вымышленный список версий.
+[Скачать ZIP с Windows EXE](https://github.com/sohalegenda-wq/zauch-launcher/actions/runs/40070540317/artifacts/12551385809). Для артефактов GitHub может потребоваться вход в аккаунт. Артефакт хранится до 22 января 2027; затем запустите workflow повторно. Authenticode-подпись не настроена.
 
-Поэтому скачивание реального клиента, ассетов, Java Runtime и Fabric с внешних серверов в этой среде **не подтверждено end-to-end**. Сетевой код и orchestration проверены unit-тестами с явными тестовыми транспортами; это не интеграционный успех.
+Результаты: `docs/evidence/windows-ci.json`, `docs/evidence/windows-ci.txt`. Последующие изменения документации и архива исходников не изменяют исполняемый код.
 
-## Требует проверки на Windows
+## Linux: предыдущие проверки
 
-1. Запустить `build.bat` либо GitHub workflow. Они выполнят pytest, реальную Windows-сборку и `tools/frozen_smoke.py`: UI/resources, frozen multiprocessing, Windows Credential Manager с временной тестовой записью, отдельный упакованный game monitor с безопасным Python-процессом.
-2. Предоставить собственный Client ID зарегистрированного public client с необходимым допуском Minecraft API и лицензированный аккаунт. Выполнить реальный OAuth/refresh/logout и убедиться в безопасном хранении refresh token.
-3. На разрешённой сети установить Vanilla и Fabric, запустить Minecraft, проверить фактический игровой процесс, Java Runtime и завершение, отменить и восстановить загрузку, проверить повреждённый asset и резервное копирование закрытого мира.
+CPython 3.12.14, Linux x86_64: **42 теста прошли**, реальный Qt offscreen UI, SHA-1/atomic downloads/cancellation/retries/LZMA, SQLite, профили, ZIP backup, запрет небезопасных путей, Java major/x64, Vanilla/Fabric command generation через minecraft-launcher-lib.
 
-Windows `.exe` здесь **не собран и не протестирован**. Запуск GitHub Actions в пользовательском репозитории не выполнялся. Автообновление лаунчера не реализовано: нет настроенного подписанного канала релизов; UI прямо сообщает об этом. Quilt/NeoForge не заявлены.
+Локальный OAuth callback реально проверен по HTTP: неверный state → 400, верный → 200; PKCE S256 verifier/challenge соответствуют друг другу. Внешние токенные ответы в unit-тестах — явные fixtures, не реальная авторизация.
+
+Также собран и проверен Linux ELF one-file: frozen UI/resources, installer subprocess и независимый monitor. ELF не выдаётся за Windows EXE. Скриншот: `docs/ui-preview.png`; отчёты: `docs/evidence/*linux*`.
+
+## Что ещё не проверено
+
+В этой сессии не предоставлены Microsoft Client ID с необходимыми разрешениями Minecraft API и лицензированный аккаунт. Поэтому **настоящие вход/refresh/logout, загрузка Minecraft/Java/Fabric и фактический игровой процесс не проверены end-to-end**.
+
+В Linux-среде live-запросы к Mojang и Fabric заблокированы облачным прокси: CONNECT **403 Forbidden**, см. `docs/evidence/network-linux.json`. Windows CI выполняет unit/smoke-проверки и сборку; он не имитирует успешную сетевую установку или запуск игры.
+
+Для end-to-end acceptance настройте OAuth по `docs/OAUTH.md`, войдите законным аккаунтом, установите Vanilla/Fabric на разрешённой сети, запустите игру, проверьте отмену/восстановление, повреждённый asset и backup закрытого мира.
+
+Автообновление лаунчера не реализовано: нет подписанного канала релизов; UI сообщает об этом. Quilt/NeoForge не заявлены.
